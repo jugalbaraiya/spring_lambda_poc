@@ -100,12 +100,12 @@ jobs:
       - name: Build with Maven
         run: mvn -B package -DskipTests --file pom.xml
       #Install AWS CLI v2
-      - name: AWS CLI v2 to Deploy Zip
+      - name: AWS CLI v2 to Deploy
         uses: imehedi/actions-awscli-v2@latest
         with:
           args: "lambda update-function-code \
             --function-name arn:aws:lambda:ap-south-1:160885260142:function:spring_lambda_poc \
-            --zip-file fileb://target/spring_lambda_poc-0.0.1-SNAPSHOT-aws"
+            --file fileb://target/spring_lambda_poc-0.0.1-SNAPSHOT-aws"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
